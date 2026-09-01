@@ -6,15 +6,19 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
+// Rotas
+const produtosRoutes = require('./routes/produtos');
+const fornecedoresRoutes = require('./routes/fornecedores');
+const associacoesRoutes = require('./routes/associacoes');
+
+app.use('/produtos', produtosRoutes);
+app.use('/fornecedores', fornecedoresRoutes);
+app.use('/associacoes', associacoesRoutes);
+
 // Rota de teste
 app.get('/', (req, res) => {
-    res.send('Olá, Mundo! Servidor funcionando! 🚀');
+    res.send('🚀 Servidor funcionando! Rotas disponíveis: /produtos, /fornecedores, /associacoes');
 });
-
-// Rotas serão adicionadas aqui posteriormente
-// app.use('/produtos', require('./routes/produtos'));
-// app.use('/fornecedores', require('./routes/fornecedores'));
-// app.use('/associacoes', require('./routes/associacoes'));
 
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}/`);
